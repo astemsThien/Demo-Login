@@ -1,0 +1,33 @@
+
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <p-card header="Sign In" [style]="{width: '360px'}">
+      <div class="field">
+        <label for="username">UserName</label>
+        <input type="text" pInputText formControlName="username" class="w-full" name="username" placeholder="Type your username"/>
+        <!-- hien thi thong bao - rang buoc username -->
+        <small
+            *ngIf="username.invalid && (username.dirty || username.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="username.errors?.['required']" style="color: red;">username is required.</div>
+            <div *ngIf="username.errors?.['pattern']">Enter a valid username</div>
+          </small>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" pInputText formControlName="password" class="w-full" name="password" placeholder="Type your password"/>
+        <!-- hien thi thong bao - rang buoc password -->
+        <small
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="password.errors?.['required']" style="color: red;">Password is required.</div>
+        </small>
+      </div>
+      <p-button label="Login" styleClass="w-full" [style]="{'border-radius': '5px'}" [disabled]="loginForm.invalid" type="submit"></p-button>
+      <div class="mt-2" style=" margin-top: 10px;">Do not have an account?
+        <a routerLink="/register" style="color: rgb(212, 19, 19); padding-left: 5px;">Register</a></div>
+    </p-card>
+  </form>
+
+
